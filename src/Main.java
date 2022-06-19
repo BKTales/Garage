@@ -10,157 +10,140 @@ import java.util.Scanner;
 */
 
 public class Main {
-
-    static int numCars;
-    static int numBikes;
-    static motInfo myBike = new motInfo();
-
-    static carInfo myCar = new carInfo();
-
-
-
-    static int revisionsCar;
     public static void main(String[] args)
     {
-        Scanner scanner1 = new Scanner(System.in);
+        Garage garage = new Garage();
+        Scanner scan = new Scanner(System.in);
         System.out.println("\nSelecione uma opcao: \n1 - Adicionar carros \n2 - Adicionar motas \n3 - Verificar os garagem \n"); //Obter Output
-        int opcao = scanner1.nextInt(); //Obter Input
-        switch (opcao)
-        {
-            case 1:
-                cars();
-                main(args);
-                break;
-            case 2:
-                bikes();
-                main(args);
-                break;
-            case 3:
-                seeGarage();
-                main(args);
-                break;
-            case 4:
-                break;
-            default:
-                main(args);
-                break;
+        int opcao = scan.nextInt(); scan.nextLine(); //Obter Input
+        while (opcao != 0) {
+            switch (opcao)
+            {
+                case 1:
+                    cars(scan, garage);
+                    break;
+                case 2:
+                    bikes(scan, garage);
+                    break;
+                case 3:
+                    seeGarage(scan, garage);
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("\nSelecione uma opcao: \n1 - Adicionar carros \n2 - Adicionar motas \n3 - Verificar os garagem \n"); //Obter Output
+            opcao = scan.nextInt(); scan.nextLine();
         }
+        scan.close();
     }
 
-    private static void cars()
+    private static void cars(Scanner scan, Garage garage)
     {
-        Scanner scanner2 = new Scanner(System.in);
-
-            System.out.println("ID: ");
-            myCar.ID = scanner2.nextLine();
-            System.out.println("Registration: ");
-            myCar.registration = scanner2.nextLine();
-            System.out.println("Age: ");
-            myCar.Age = scanner2.nextInt();
-            System.out.println("Miles: ");
-            myCar.mileometer = scanner2.nextFloat();
-            System.out.println("Revisions: ");
-            myCar.revisions = scanner2.nextInt();
-            numCars ++;
+        System.out.print("ID: ");
+        String id = scan.nextLine().trim();
+        System.out.print("Registration: ");
+        String registration = scan.nextLine().trim();
+        System.out.print("Age: ");
+        int age = scan.nextInt();
+        System.out.print("Miles: ");
+        float mileometer = scan.nextFloat();
+        System.out.print("Revisions: ");
+        int revisions = scan.nextInt();
+        garage.addCar(id, registration, age, mileometer, revisions);
     }
 
-    private static int carRevs()
+    public static void bikes(Scanner scan, Garage garage)
     {
-            return myCar.revisions;
+        System.out.print("ID: ");
+        String id = scan.nextLine().trim();
+        System.out.print("Registration: ");
+        String registration = scan.nextLine().trim();
+        System.out.print("Age: ");
+        int Age = scan.nextInt();
+        System.out.print("Miles: ");
+        float mileometer = scan.nextFloat();
+        System.out.print("Revisions: ");
+        int revisions = scan.nextInt();
+        garage.addBike(id, registration, Age, mileometer, revisions);
     }
 
-    public static void bikes()
+    private static void seeGarage(Scanner scan, Garage garage)
     {
-        Scanner scanner3 = new Scanner(System.in);
-        System.out.println("ID: ");
-        myBike.ID = scanner3.nextLine();
-        System.out.println("Registration: ");
-        myBike.registration = scanner3.nextLine();
-        System.out.println("Age: ");
-        myBike.Age = scanner3.nextInt();
-        System.out.println("Miles: ");
-        myBike.mileometer = scanner3.nextFloat();
-        System.out.println("Revisions: ");
-        myBike.revisions = scanner3.nextInt();
 
-        numBikes++;
-    }
-    private static int bikeRevs()
-    {
-        return myBike.revisions;
-    }
+        String ans = "";
 
-    private static void seeGarage()
-    {
-        String answer01;
-        String answer02;
-        String answer03;
-        int revisionstoAdd;
+        System.out.println("You have " + garage.getNumCars() + " cars.\n");
 
-        Scanner scanner4 = new Scanner(System.in);
+        System.out.println("You have " + garage.getNumBikes() + " bikes.\n");
 
-        System.out.println("You have " + numCars + " cars.\n");
-
-        System.out.println("You have " + numBikes + " bikes.\n");
-
-        if(balance())
+        if(garage.balance())
         {
             System.out.println("You might need balance to ride a bike.");
         }
-        if(numBikes != 0)
+        if(garage.hasBikes())
         {
             System.out.println("Do you wish to see how many revisions have you got on your bike? (Y/N)");
-            answer01 = scanner4.nextLine();
-            switch (answer01)
+            ans = scan.nextLine();
+            switch (ans)
             {
                 case "Y":
-                    System.out.println("You got " + bikeRevs() + " revisions.");
-                    break;
-                case "N":
-                    System.out.println("Okay, thanks.");
-                    break;
-                default:
-                    System.out.println("System Error.");
-            }
-        }
-        if(numCars != 0)
-        {
-            System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
-            answer02 = scanner4.nextLine();
-            switch (answer02)
-            {
-                case "Y":
-                    System.out.println("You got " + carRevs() + " revisions.");
+                    System.out.println("You got " + garage.bikeRevs() + " revisions.");
                     System.out.println("Do you want to add revisions? (Y/N)");
-                    answer03 = scanner4.nextLine();
-                    switch (answer03){
+                    ans = scan.nextLine().trim();
+                    switch (ans){
                         case "Y":
                             System.out.println("How many revisions?");
-                            revisionstoAdd = scanner4.nextInt();
+                            int revisionsToAdd = scan.nextInt();
+                            System.out.println("What is the id of your bike?");
+                            String id = scan.nextLine().trim();
+                            Bike bike = garage.getBike(id);
+                            for (int i = 0; i < revisionsToAdd; i++) {
+                                bike.addRev();
+                            }
                         default:
                             break;
-
                     }
                     break;
                 case "N":
                     System.out.println("Okay, thanks.");
+                    break;
+                default:
+                    System.out.println("System Error.");
+            }
+        }
+        if(garage.hasCars())
+        {
+            System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
+            ans = scan.nextLine().trim();
+            switch (ans)
+            {
+                case "Y":
+                    System.out.println("You got " + garage.carRevs() + " revisions.");
+                    System.out.println("Do you want to add revisions? (Y/N)");
+                    ans = scan.nextLine();
+                    switch (ans){
+                        case "Y":
+                            System.out.println("How many revisions?");
+                            int revisionsToAdd = scan.nextInt();
+                            System.out.println("What is the id of your car?");
+                            String id = scan.nextLine().trim();
+                            Car car = garage.getCar(id);
+                            for (int i = 0; i < revisionsToAdd; i++) {
+                                if (car != null)
+                                    car.addRev();
+                            }
+                        default:
+                            break;
+                    }
+                    break;
+                case "N":
+                    System.out.println("Okay, thanks.");
+                    break;
                 default:
                     System.out.println("System Error.");
             }
         }
 
-    }
-    private static boolean balance()
-    {
-        boolean balance;
-
-        if(numBikes == 0)
-        {
-            balance = false;
-        } else
-            balance = true;
-
-        return balance;
     }
 }
 
