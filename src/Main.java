@@ -111,7 +111,7 @@ public class Main {
     {
         String ans;
         System.out.println("You have " + garage.getNumCars() + " car(s).\n");
-        System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
+        System.out.println("Do you want to see how many revisions you got on your car (Y/N)");
             ans = scan.nextLine().trim();
             switch (ans)
             {
@@ -146,15 +146,15 @@ public class Main {
     {
         String ans;
 
-        System.out.println("You got " + garage.getNumBikes() + "Bikes\n");
+        System.out.println("You got " + garage.getNumBikes() + "Bike(s)\n");
 
         System.out.println("Do you wish to see how many revisions have you got on your bike? (Y/N)\n");
         ans = scan.nextLine();
         switch (ans)
         {
             case "Y":
-                System.out.println("You got " + garage.bikeRevs() + " revisions.");
-                System.out.println("Do you want to add revisions? (Y/N)");
+                System.out.println("You got " + garage.bikeRevs() + " revision(s).");
+                System.out.println("Do you want to add any revisions? (Y/N)");
                 ans = scan.nextLine().trim();
                 switch (ans){
                     case "Y":
