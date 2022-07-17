@@ -1,37 +1,5 @@
 import java.util.*;
 
-
-/*
-Coleções -> linkedlist; HashMap
-
-Map<Integer, String> pessoas = new HashMap<>();
-
-        pessoas.put(1, "Carlos");
-        pessoas.put(2, "Manuel");
-
-        System.out.println(pessoas.containsKey(2));
-
-        pessoas.remove(2);
-
-        System.out.println(pessoas.containsKey(2));
-
-        List<String> manuel = new LinkedList<>();
-
-        manuel.add("Manuel");
-        manuel.addAll(pessoas.values());
-        manuel.addAll(pessoas
-        System.out.println(manuel.contains("Manuel"));
- */
-
-/* TIPOS DE VARIAVEIS
-    boolean - true / false
-    String - "hello", "bye", " "
-    char = 'a', 'b', '3'
-    int = -1, 0, 2, 8
-    float = 2.5, -1.2
-    String[][] - array de Strings
-*/
-
 public class Main {
     public static void main(String[] args)
     {
@@ -179,34 +147,3 @@ public class Main {
     }
 }
 
-
-
-
-/*
-try -> Bloco de código a testar | catch(exceção nome da exceção) -> Bloco de código para combater exceptions | finally -> Aconteça ou não erros o bloco de código acontece
-SEMPRE
- */
-
-/*
-Programa: [Do While] (Para Java)
-Menu que permite adicionar carros e motas no sistema - V
-Método que diz é preciso equilibrio -> Mota - Verdadeiro ; Carro - Falso -> V
-O Carro tem que ter: ID (String), Matricula (String), Idade (int), Conta KMs (float), Revisões (int) -> V
-A Mota tem que ter: ID (String), Matricula (String), Idade (int), Conta KMs (float), Revisões (int) -> V
-
-Adicionar Carros -> V
-Adicionar Motas -> V
-
-Ver os Kms (Carro; Mota)
-Dar update nos Kms (Carro; Mota)
-
-Obter o nº de Revisões (Carro; Mota) -> V
-Update Revisões (Carro; Mota) -> V
-
-O programa quando inicializa cria um garagem com carros e motas;
-Criar garagem virtual. - V
-
-Quantos veiculos tem na garagem - V
-
-Aux -> Quantos carros || Quantas motas. - V
- */
