@@ -110,7 +110,7 @@ public class Main {
     private static void CarInterface(Scanner scan, Garage garage)
     {
         String ans;
-        System.out.println("You have " + garage.getNumCars() + " cars.\n");
+        System.out.println("You have " + garage.getNumCars() + " car(s).\n");
         System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
             ans = scan.nextLine().trim();
             switch (ans)
@@ -121,7 +121,7 @@ public class Main {
                     ans = scan.nextLine();
                     switch (ans){
                         case "Y":
-                            System.out.println("How many revisions?");
+                            System.out.println("How many revision(s)?");
                             int revisionsToAdd = scan.nextInt(); scan.nextLine();
                             System.out.println("What's you car id?");
                             String carId = scan.nextLine().trim();

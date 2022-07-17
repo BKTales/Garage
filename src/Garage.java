@@ -65,61 +65,6 @@ public class Garage {
         return sum;
     }
 
-    //public boolean balance() {
-    //    return !(bikes[0] == null);
-    // }
-
-    public void addCarRev(Car car) {
-        for (Car c : cars) {
-            if (c.equals(car)) {
-                c.addRev();
-            }
-        }
-    }
-
-    public void addBikeRev(Bike bike) {
-        for (Bike b : bikes) {
-            if (b.equals(bike)) {
-                b.addRev();
-            }
-        }
-    }
-
-    public float mileometerCar(Car car){
-
-        for (Car c: cars){
-            if(c.equals(car)){
-                return c.getMil();
-            }
-        }
-        return 0.0f;
-    }
-
-    public float mileometerBike(Bike bike){
-        for (Bike b: bikes) {
-            if(b.equals(bike)){
-                return b.getMil();
-            }
-        }
-        return 0.0f;
-    }
-
-    public void updateMileometerCar(Car car, float miles){
-        for (Car c: cars){
-            if(c.equals(car)){
-                c.updateMiles(miles);
-            }
-        }
-    }
-
-    public void updateMileometerBike(Bike bike, float miles){
-        for (Bike b: bikes){
-            if(b.equals(bike)){
-                b.updateMiles(miles);
-            }
-        }
-    }
-
     public boolean hasCars() {
         return cars[0] != null;
     }
