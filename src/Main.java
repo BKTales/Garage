@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /* TIPOS DE VARIAVEIS
@@ -12,31 +13,38 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args)
     {
-        Garage garage = new Garage();
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nSelecione uma opcao: \n1 - Adicionar carros \n2 - Adicionar motas \n3 - Verificar os garagem \n"); //Obter Output
-        int opcao = scan.nextInt(); scan.nextLine(); //Obter Input
-        while (opcao != 0) {
-            switch (opcao)
-            {
-                case 1:
-                    cars(scan, garage);
-                    break;
-                case 2:
-                    bikes(scan, garage);
-                    break;
-                case 3:
-                    seeGarage(scan, garage);
-                    break;
-                default:
-                    break;
-            }
-            System.out.println("\nSelecione uma opcao: \n1 - Adicionar carros \n2 - Adicionar motas \n3 - Verificar os garagem \n"); //Obter Output
-            opcao = scan.nextInt(); scan.nextLine();
-        }
-        scan.close();
-    }
+        try {
+            int userInput = 0;
+            Garage garage = new Garage();
+            Scanner scan = new Scanner(System.in);
+            System.out.println("\nSelect an option: \n1 - Add cars \n2 - Add bikes \n3 - Check garage \n"); //Output
+            userInput = scan.nextInt(); scan.nextLine(); //Get user input.
 
+            while (userInput != 0) {
+                switch (userInput)
+                {
+                    case 1:
+                        cars(scan, garage);
+                        break;
+                    case 2:
+                        bikes(scan, garage);
+                        break;
+                    case 3:
+                        seeGarage(scan, garage);
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("\nSelect an option: \n1 - Add cars \n2 - Add bikes \n3 - Check garage \n"); //Output
+                userInput = scan.nextInt(); scan.nextLine();
+            }
+            scan.close();
+        }catch (Exception e){
+            System.out.println("Invalid Input");
+            main(args);
+        }
+
+    }
     private static void cars(Scanner scan, Garage garage)
     {
         System.out.print("ID: ");
@@ -70,7 +78,7 @@ public class Main {
     private static void seeGarage(Scanner scan, Garage garage)
     {
 
-        String ans = "";
+        String ans;
 
         System.out.println("You have " + garage.getNumCars() + " cars.\n");
 
@@ -124,14 +132,15 @@ public class Main {
                     switch (ans){
                         case "Y":
                             System.out.println("How many revisions?");
-                            int revisionsToAdd = scan.nextInt();
-                            System.out.println("What is the id of your car?");
-                            String id = scan.nextLine().trim();
-                            Car car = garage.getCar(id);
+                            int revisionsToAdd = scan.nextInt(); scan.nextLine();
+                            System.out.println("What's you car id?");
+                            String carId = scan.nextLine().trim();
+                            Car car = garage.getCar(carId);
                             for (int i = 0; i < revisionsToAdd; i++) {
                                 if (car != null)
                                     car.addRev();
                             }
+                            break;
                         default:
                             break;
                     }
@@ -164,10 +173,10 @@ Ver os Kms (Carro; Mota)
 Dar update nos Kms (Carro; Mota)
 
 Obter o nº de Revisões (Carro; Mota) -> V
-Update Revisões (Carro; Mota)
+Update Revisões (Carro; Mota) -> V
 
 O programa quando inicializa cria um garagem com carros e motas;
-Criar garagem virtual.
+Criar garagem virtual. - V
 
 Quantos veiculos tem na garagem - V
 
