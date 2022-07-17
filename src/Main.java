@@ -1,5 +1,27 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+
+
+/*
+Coleções -> linkedlist; HashMap
+
+Map<Integer, String> pessoas = new HashMap<>();
+
+        pessoas.put(1, "Carlos");
+        pessoas.put(2, "Manuel");
+
+        System.out.println(pessoas.containsKey(2));
+
+        pessoas.remove(2);
+
+        System.out.println(pessoas.containsKey(2));
+
+        List<String> manuel = new LinkedList<>();
+
+        manuel.add("Manuel");
+        manuel.addAll(pessoas.values());
+        manuel.addAll(pessoas
+        System.out.println(manuel.contains("Manuel"));
+ */
 
 /* TIPOS DE VARIAVEIS
     boolean - true / false
@@ -77,51 +99,19 @@ public class Main {
 
     private static void seeGarage(Scanner scan, Garage garage)
     {
-
-        String ans;
-
-        System.out.println("You have " + garage.getNumCars() + " cars.\n");
-
-        System.out.println("You have " + garage.getNumBikes() + " bikes.\n");
-
-        if(garage.balance())
-        {
-            System.out.println("You might need balance to ride a bike.");
-        }
-        if(garage.hasBikes())
-        {
-            System.out.println("Do you wish to see how many revisions have you got on your bike? (Y/N)");
-            ans = scan.nextLine();
-            switch (ans)
-            {
-                case "Y":
-                    System.out.println("You got " + garage.bikeRevs() + " revisions.");
-                    System.out.println("Do you want to add revisions? (Y/N)");
-                    ans = scan.nextLine().trim();
-                    switch (ans){
-                        case "Y":
-                            System.out.println("How many revisions?");
-                            int revisionsToAdd = scan.nextInt();
-                            System.out.println("What is the id of your bike?");
-                            String id = scan.nextLine().trim();
-                            Bike bike = garage.getBike(id);
-                            for (int i = 0; i < revisionsToAdd; i++) {
-                                bike.addRev();
-                            }
-                        default:
-                            break;
-                    }
-                    break;
-                case "N":
-                    System.out.println("Okay, thanks.");
-                    break;
-                default:
-                    System.out.println("System Error.");
-            }
-        }
         if(garage.hasCars())
         {
-            System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
+            CarInterface(scan, garage);
+        }
+        if(garage.hasBikes()){
+            BikeInterface(scan, garage);
+        }
+    }
+    private static void CarInterface(Scanner scan, Garage garage)
+    {
+        String ans;
+        System.out.println("You have " + garage.getNumCars() + " cars.\n");
+        System.out.println("Do you with to see how many revisions have you got on your car (Y/N)");
             ans = scan.nextLine().trim();
             switch (ans)
             {
@@ -151,13 +141,51 @@ public class Main {
                 default:
                     System.out.println("System Error.");
             }
-        }
+    }
+    private static void BikeInterface(Scanner scan, Garage garage)
+    {
+        String ans;
 
+        System.out.println("You got " + garage.getNumBikes() + "Bikes\n");
+
+        System.out.println("Do you wish to see how many revisions have you got on your bike? (Y/N)\n");
+        ans = scan.nextLine();
+        switch (ans)
+        {
+            case "Y":
+                System.out.println("You got " + garage.bikeRevs() + " revisions.");
+                System.out.println("Do you want to add revisions? (Y/N)");
+                ans = scan.nextLine().trim();
+                switch (ans){
+                    case "Y":
+                        System.out.println("How many revisions?");
+                        int revisionsToAdd = scan.nextInt();
+                        System.out.println("What is the id of your bike?");
+                        String id = scan.nextLine().trim();
+                        Bike bike = garage.getBike(id);
+                        for (int i = 0; i < revisionsToAdd; i++) {
+                            bike.addRev();
+                        }
+                    default:
+                        break;
+                }
+                break;
+            case "N":
+                System.out.println("Okay, thanks.");
+                break;
+            default:
+                System.out.println("System Error.");
+        }
     }
 }
 
 
 
+
+/*
+try -> Bloco de código a testar | catch(exceção nome da exceção) -> Bloco de código para combater exceptions | finally -> Aconteça ou não erros o bloco de código acontece
+SEMPRE
+ */
 
 /*
 Programa: [Do While] (Para Java)

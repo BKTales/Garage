@@ -65,9 +65,9 @@ public class Garage {
         return sum;
     }
 
-    public boolean balance() {
-        return !(bikes[0] == null);
-    }
+    //public boolean balance() {
+    //    return !(bikes[0] == null);
+    // }
 
     public void addCarRev(Car car) {
         for (Car c : cars) {
