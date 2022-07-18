@@ -1,4 +1,4 @@
-- Basic garage system.
+## Garage system
 
 What are you able to do?
 
